@@ -24,3 +24,47 @@ os envios de água e a previsão de novas remessas, em resumo.
 
 ![contexto](assets/contexto.png)
 
+---
+
+## Modelagem do banco
+
+```mermaid
+erDiagram
+    FAMILIA {
+        int id_familia PK
+        string endereco
+        boolean possui_captacao_calhas
+        date ultima_entrega
+        date proxima_previsao
+    }
+
+    MEMBRO {
+        int id_membro PK
+        string nome
+        int idade
+        boolean acamado
+        int id_familia FK
+    }
+
+    CISTERNA {
+        int id_cisterna PK
+        int capacidade_litros
+        int nivel_atual
+        int id_familia FK
+    }
+
+    DISTRIBUICAO {
+        int id_distribuicao PK
+        date data_entrega
+        int quantidade_litros
+        date previsao_proxima
+        string observacoes
+        int id_familia FK
+    }
+
+    FAMILIA ||--o{ MEMBRO : "tem"
+    FAMILIA ||--o{ CISTERNA : "possui"
+    FAMILIA ||--o{ DISTRIBUICAO : "recebe"
+
+```
+
