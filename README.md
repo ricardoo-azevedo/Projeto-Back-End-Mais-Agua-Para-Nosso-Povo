@@ -39,6 +39,8 @@ erDiagram
         boolean possui_captacao_calhas
         date ultima_entrega
         date proxima_previsao
+        decimal latitude
+        decimal longitude
     }
 
     MEMBRO {
@@ -68,6 +70,5 @@ erDiagram
     FAMILIA ||--o{ MEMBRO : "tem"
     FAMILIA ||--o{ CISTERNA : "possui"
     FAMILIA ||--o{ DISTRIBUICAO : "recebe"
-
 ```
 
