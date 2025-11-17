@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+##a configs do banco
+src/main/resources/application.properties
