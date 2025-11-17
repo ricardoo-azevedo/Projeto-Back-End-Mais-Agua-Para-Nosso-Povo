@@ -21,3 +21,6 @@ geográfica de cada cisterna e capacidade de cada uma delas em litros, quantidad
 O intuito é planejar de modo mais eficiente a distribuição de água
 considerando o consumo de cada núcleo familiar e obtendo informações sobre
 os envios de água e a previsão de novas remessas, em resumo.
+
+![contexto](assets/contexto.png)
+
