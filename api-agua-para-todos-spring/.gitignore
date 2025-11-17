@@ -33,5 +33,5 @@ build/
 .vscode/
 
 
-##a configs do banco
+### a configs do banco
 src/main/resources/application.properties
