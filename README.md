@@ -1,5 +1,5 @@
 # Projeto-Back-End-Mais-Agua-Para-Nosso-Povo
-Desáfio de estudo diretamente tirado de Usina Pernambucana de Inovação do programa Desafios Day.
+Desafio de estudo diretamente tirado de Usina Pernambucana de Inovação do programa Desafios Day.
 
 ---
 
