@@ -70,5 +70,10 @@ erDiagram
     FAMILIA ||--o{ MEMBRO : "tem"
     FAMILIA ||--o{ CISTERNA : "possui"
     FAMILIA ||--o{ DISTRIBUICAO : "recebe"
+
+    %% Cardinalidades explicitas
+    FAMILIA ||--|{ MEMBRO : "1..*"
+    FAMILIA ||--|{ CISTERNA : "0..*"
+    FAMILIA ||--|{ DISTRIBUICAO : "0..*"
 ```
 
