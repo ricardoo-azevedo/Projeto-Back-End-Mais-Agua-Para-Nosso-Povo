@@ -2,6 +2,8 @@ package br.ricardoo_azevedo.api_agua_para_todos_spring.dtos;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,7 +25,7 @@ public class MembroDto {
         this.ano_nascimento = ano_nascimento;
         this.acamado = acamado;
     }
-
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     UUID id;
 
     @Size(min = 14, max = 14, message = "o cpf deve ser completo")
