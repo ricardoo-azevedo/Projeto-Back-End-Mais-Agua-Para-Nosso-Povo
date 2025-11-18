@@ -34,7 +34,7 @@ os envios de água e a previsão de novas remessas, em resumo.
 ```mermaid
 erDiagram
     FAMILIA {
-        int id_familia PK
+        uuid id_familia PK
         string endereco
         boolean possui_captacao_calhas
         date ultima_entrega
@@ -44,7 +44,7 @@ erDiagram
     }
 
     MEMBRO {
-        int id_membro PK
+        uuid id_membro PK
         string nome
         int idade
         boolean acamado
@@ -52,14 +52,14 @@ erDiagram
     }
 
     CISTERNA {
-        int id_cisterna PK
+        uuid id_cisterna PK
         int capacidade_litros
         int nivel_atual
         int id_familia FK
     }
 
     DISTRIBUICAO {
-        int id_distribuicao PK
+        uuid id_distribuicao PK
         date data_entrega
         int quantidade_litros
         date previsao_proxima
@@ -71,4 +71,33 @@ erDiagram
     FAMILIA ||--|{ CISTERNA : "possui (0..*)"
     FAMILIA ||--|{ DISTRIBUICAO : "recebe (0..*)"
 ```
+
+---
+
+## Ferramentas utilizadas:
+
+<div style="display: flex; gap: 20px; align-items: center; justify-content: center;">
+
+  <div style="text-align: center; width: 150px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" height="60" />
+    <div>Spring 3.5.7</div>
+    </div>
+
+  <div style="text-align: center; width: 150px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="60" />
+     <div>OpenJDK 21.0.9<br>(2025-10-21)</div>
+  </div>
+
+  <div style="text-align: center; width: 150px;">
+     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg" height="60"/>
+    <div>Apache Maven 3.9.11</div>
+  </div>
+
+  <div style="text-align: center; width: 150px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" height="60"/>
+    <div>MySQL 8 / MariaDB 12.0.2</div>
+    </div>
+
+</div>
+
 
