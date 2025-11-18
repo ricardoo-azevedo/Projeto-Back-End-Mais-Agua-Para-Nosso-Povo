@@ -25,7 +25,7 @@ os envios de água e a previsão de novas remessas, em resumo.
 ![contexto](assets/contexto.png)
 
 
-[link-do-desafio](https://desafios.pe.gov.br/challenge?url=mais-agua-para-nosso-povo-1)
+### [Link-do-desafio](https://desafios.pe.gov.br/challenge?url=mais-agua-para-nosso-povo-1)
 
 ---
 
@@ -48,14 +48,14 @@ erDiagram
         string nome
         int idade
         boolean acamado
-        int id_familia FK
+        uuid id_familia FK
     }
 
     CISTERNA {
         uuid id_cisterna PK
         int capacidade_litros
         int nivel_atual
-        int id_familia FK
+        uuid id_familia FK
     }
 
     DISTRIBUICAO {
@@ -64,7 +64,7 @@ erDiagram
         int quantidade_litros
         date previsao_proxima
         string observacoes
-        int id_familia FK
+        uuid id_familia FK
     }
 
     FAMILIA ||--|{ MEMBRO : "tem (1..*)"
