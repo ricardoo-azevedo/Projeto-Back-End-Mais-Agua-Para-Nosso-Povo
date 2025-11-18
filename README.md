@@ -81,3 +81,68 @@ erDiagram
 |--------|------|-------|-------|
 | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" height="60"/></div> | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="60"/></div> | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg" height="60"/></div> | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" height="60"/></div> |
 | Spring 3.5.7 | OpenJDK 21.0.9<br>(2025-10-21) | Apache Maven 3.9.11 | MySQL 8 / MariaDB 12.0.2 |
+
+---
+# Testando a API localmente
+
+## Pré-requisitos
+
+Antes de rodar a API, certifique-se de ter instalado:
+
+* [OpenJDK 21.0.9](https://www.oracle.com/java/technologies/downloads/#jdk21-windows)
+* [Apache Maven 3.9.11](https://maven.apache.org/docs/3.9.11/release-notes.html)
+* [MariaDB 12.0.2](https://mariadb.org/download/?t=mariadb&p=mariadb&r=12.0.2&os=windows&cpu=x86_64&pkg=msi&mirror=fder)
+
+> **Observação:** O MariaDB é compatível com MySQL.
+
+---
+
+## Instalando e iniciando o projeto
+
+### Clone o repositório
+
+```bash
+git clone https://github.com/ricardoo-azevedo/Projeto-Back-End-Mais-Agua-Para-Nosso-Povo.git
+```
+
+### Configure o banco de dados
+
+- Entre na pasta de recursos da API:
+
+```
+api-agua-para-todos-spring/src/main/resources
+```
+
+- Abra o arquivo `application.properties`.
+
+- Altere o usuário e a senha do banco para os seus:
+
+```properties
+spring.datasource.username=seuusuario
+spring.datasource.password=suasenha
+```
+
+---
+
+### 3. Rode a API
+
+Abra o terminal na raiz do projeto e execute:
+
+```bash
+mvn spring-boot:run
+```
+
+---
+
+## Testando a API
+
+Após iniciar a aplicação, você pode acessar a documentação interativa e testar os endpoints diretamente no seu navegador:
+
+[🔗 Testar API no Swagger](http://localhost:35555/swagger-ui/index.html#/)
+
+
+
+
+
+
+
