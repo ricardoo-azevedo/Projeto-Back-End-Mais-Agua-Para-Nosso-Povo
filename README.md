@@ -39,14 +39,15 @@ erDiagram
         boolean possui_captacao_calhas
         date ultima_entrega
         date proxima_previsao
-        decimal latitude
-        decimal longitude
+        double latitude
+        double longitude
     }
 
     MEMBRO {
         uuid id_membro PK
+        string cpf
         string nome
-        int idade
+        int ano_nascimento
         boolean acamado
         uuid id_familia FK
     }

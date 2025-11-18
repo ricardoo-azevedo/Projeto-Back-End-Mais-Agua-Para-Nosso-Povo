@@ -44,9 +44,9 @@ public class Familia {
   private LocalDate proxima_previsao;
 
   @Column(nullable = false)
-  private float latitude;
+  private double latitude;
 
   @Column(nullable = false)
-  private float longitude;
+  private double longitude;
 
 }

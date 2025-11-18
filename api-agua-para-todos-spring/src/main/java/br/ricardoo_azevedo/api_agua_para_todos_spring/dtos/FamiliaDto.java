@@ -18,7 +18,7 @@ import lombok.ToString;
 public class FamiliaDto {
 
   public FamiliaDto(String endereco, boolean possui_captacao_calhas, LocalDate data_entrega,
-      LocalDate proxima_revisao, float latitude, float longitude) {
+      LocalDate proxima_revisao, double latitude, double longitude) {
     this.endereco = endereco;
     this.possui_captacao_calhas = possui_captacao_calhas;
     this.data_entrega = data_entrega;
@@ -44,10 +44,10 @@ public class FamiliaDto {
   private LocalDate proxima_previsao;
 
   @NotNull(message = "Latitude nao deve ser nulo")
-  private float latitude;
+  private double latitude;
 
   @NotNull(message = "Logitude nao deve ser nulo")
-  private float longitude;
+  private double longitude;
 
 
 }
