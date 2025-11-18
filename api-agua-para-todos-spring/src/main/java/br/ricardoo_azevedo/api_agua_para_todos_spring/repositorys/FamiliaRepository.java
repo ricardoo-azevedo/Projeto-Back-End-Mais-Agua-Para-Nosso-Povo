@@ -11,7 +11,8 @@ import br.ricardoo_azevedo.api_agua_para_todos_spring.models.Familia;
 @Repository
 public interface FamiliaRepository extends JpaRepository<Familia, UUID> {
 
-  List<Familia> findByEndereco(String endereco);
+  // acho q isso foi reduntante e na real nem precisou
+/*   List<Familia> findByEndereco(String endereco) */;
 
   //cheacar isso no model ein
   boolean existsByEndereco(String endereco);

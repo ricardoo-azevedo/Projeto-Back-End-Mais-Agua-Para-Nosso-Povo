@@ -30,30 +30,24 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
           familia.getLongitude());
     }
 
+    public Familia toEntity(FamiliaDto familiaDto){
+     return new Familia(
+          familiaDto.getEndereco(), 
+          familiaDto.isPossui_captacao_calhas(),
+          familiaDto.getData_entrega(), 
+          familiaDto.getProxima_previsao(), 
+          familiaDto.getLatitude(),
+          familiaDto.getLongitude());
+    }
+
 
   @Override
   public FamiliaDto salvar(FamiliaDto familiaDto) {
-    Familia familia = new Familia();
     // if (familiaRepository.existsById(familiaDto.getId() {
     // throw new Exception();
     // }
-    familia.setEndereco(familiaDto.getEndereco());
-    familia.setPossui_captacao_calhas(familiaDto.isPossui_captacao_calhas());
-    familia.setData_entrega(familiaDto.getData_entrega());
-    familia.setProxima_previsao(familiaDto.getProxima_previsao());
-    familia.setLatitude(familiaDto.getLatitude());
-    familia.setLongitude(familiaDto.getLongitude());
-
-    Familia familiaSalva = familiaRepository.save(familia);
-
-    return new FamiliaDto(
-      familiaSalva.getId(), 
-      familiaSalva.getEndereco(), 
-      familiaSalva.isPossui_captacao_calhas(),
-      familiaSalva.getData_entrega(), 
-      familiaSalva.getProxima_previsao(), 
-      familiaSalva.getLatitude(),
-      familiaSalva.getLongitude());
+    Familia familiaSalva = familiaRepository.save(toEntity(familiaDto));
+    return toDto(familiaSalva);
   }
 
   @Override
@@ -61,7 +55,6 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
     // if(id == null){
     //   throw new expcetion;
     // }
-    //depois vou criar a exception personalizada e consertar essas verificações malditas
     Familia familia = familiaRepository.findById(id).orElseThrow(() -> new RuntimeException());
 
     familia.setEndereco(familiaDto.getEndereco());
@@ -69,17 +62,10 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
     familia.setData_entrega(familiaDto.getData_entrega());
     familia.setProxima_previsao(familiaDto.getProxima_previsao());
     familia.setLatitude(familiaDto.getLatitude());
-    familia.setLongitude(familiaDto.getLongitude());
-    Familia familiaEditada = familiaRepository.save(familia);
+    familia.setLongitude(familiaDto.getLongitude()); 
 
-    return new FamiliaDto(
-      familiaEditada.getId(), 
-      familiaEditada.getEndereco(), 
-      familiaEditada.isPossui_captacao_calhas(),
-      familiaEditada.getData_entrega(), 
-      familiaEditada.getProxima_previsao(), 
-      familiaEditada.getLatitude(),
-      familiaEditada.getLongitude());
+    Familia familiaEditada = familiaRepository.save(familia);
+    return toDto(familiaEditada);
   }
 
   @Override
