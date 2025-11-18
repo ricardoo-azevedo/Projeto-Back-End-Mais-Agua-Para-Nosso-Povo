@@ -24,7 +24,7 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
           familia.getId(), 
           familia.getEndereco(), 
           familia.isPossui_captacao_calhas(),
-          familia.getEntrega(), 
+          familia.getData_entrega(), 
           familia.getProxima_previsao(), 
           familia.getLatitude(),
           familia.getLongitude());
@@ -39,7 +39,7 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
     // }
     familia.setEndereco(familiaDto.getEndereco());
     familia.setPossui_captacao_calhas(familiaDto.isPossui_captacao_calhas());
-    familia.setEntrega(familiaDto.getEntrega());
+    familia.setData_entrega(familiaDto.getData_entrega());
     familia.setProxima_previsao(familiaDto.getProxima_previsao());
     familia.setLatitude(familiaDto.getLatitude());
     familia.setLongitude(familiaDto.getLongitude());
@@ -50,7 +50,7 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
       familiaSalva.getId(), 
       familiaSalva.getEndereco(), 
       familiaSalva.isPossui_captacao_calhas(),
-      familiaSalva.getEntrega(), 
+      familiaSalva.getData_entrega(), 
       familiaSalva.getProxima_previsao(), 
       familiaSalva.getLatitude(),
       familiaSalva.getLongitude());
@@ -66,7 +66,7 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
 
     familia.setEndereco(familiaDto.getEndereco());
     familia.setPossui_captacao_calhas(familiaDto.isPossui_captacao_calhas());
-    familia.setEntrega(familiaDto.getEntrega());
+    familia.setData_entrega(familiaDto.getData_entrega());
     familia.setProxima_previsao(familiaDto.getProxima_previsao());
     familia.setLatitude(familiaDto.getLatitude());
     familia.setLongitude(familiaDto.getLongitude());
@@ -76,7 +76,7 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
       familiaEditada.getId(), 
       familiaEditada.getEndereco(), 
       familiaEditada.isPossui_captacao_calhas(),
-      familiaEditada.getEntrega(), 
+      familiaEditada.getData_entrega(), 
       familiaEditada.getProxima_previsao(), 
       familiaEditada.getLatitude(),
       familiaEditada.getLongitude());
