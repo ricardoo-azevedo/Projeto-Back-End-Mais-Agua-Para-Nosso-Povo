@@ -30,6 +30,16 @@ public class Familia {
   @Column(columnDefinition = "BINARY(16)")
   private UUID id;
 
+  public Familia(String endereco, boolean possui_captacao_calhas, LocalDate data_entrega,
+      LocalDate proxima_revisao, double latitude, double longitude) {
+    this.endereco = endereco;
+    this.possui_captacao_calhas = possui_captacao_calhas;
+    this.data_entrega = data_entrega;
+    this.proxima_previsao = proxima_revisao;
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
+
   // em duvida se deveria ser unique ou nao
   @Column(nullable = false)
   private String endereco;
