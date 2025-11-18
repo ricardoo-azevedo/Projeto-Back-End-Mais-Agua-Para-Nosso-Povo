@@ -76,28 +76,7 @@ erDiagram
 
 ## Ferramentas utilizadas:
 
-<div style="display: flex; gap: 20px; align-items: center; justify-content: center;">
-
-  <div style="text-align: center; width: 150px;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" height="60" />
-    <div>Spring 3.5.7</div>
-    </div>
-
-  <div style="text-align: center; width: 150px;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="60" />
-     <div>OpenJDK 21.0.9<br>(2025-10-21)</div>
-  </div>
-
-  <div style="text-align: center; width: 150px;">
-     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg" height="60"/>
-    <div>Apache Maven 3.9.11</div>
-  </div>
-
-  <div style="text-align: center; width: 150px;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" height="60"/>
-    <div>MySQL 8 / MariaDB 12.0.2</div>
-    </div>
-
-</div>
-
-
+| Spring | Java | Maven | MySQL |
+|--------|------|-------|-------|
+| <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" height="60"/></div> | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="60"/></div> | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg" height="60"/></div> | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" height="60"/></div> |
+| Spring 3.5.7 | OpenJDK 21.0.9<br>(2025-10-21) | Apache Maven 3.9.11 | MySQL 8 / MariaDB 12.0.2 |
