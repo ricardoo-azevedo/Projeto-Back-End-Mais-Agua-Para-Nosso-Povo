@@ -34,7 +34,7 @@ os envios de água e a previsão de novas remessas, em resumo.
 ```mermaid
 erDiagram
     FAMILIA {
-        uuid id_familia PK
+        uuid id PK
         string endereco
         boolean possui_captacao_calhas
         date ultima_entrega
@@ -44,7 +44,7 @@ erDiagram
     }
 
     MEMBRO {
-        uuid id_membro PK
+        uuid id PK
         string cpf
         string nome
         int ano_nascimento
@@ -53,14 +53,14 @@ erDiagram
     }
 
     CISTERNA {
-        uuid id_cisterna PK
+        uuid id PK
         int capacidade_litros
         int nivel_atual
         uuid id_familia FK
     }
 
     DISTRIBUICAO {
-        uuid id_distribuicao PK
+        uuid id PK
         date data_entrega
         int quantidade_litros
         date previsao_proxima
