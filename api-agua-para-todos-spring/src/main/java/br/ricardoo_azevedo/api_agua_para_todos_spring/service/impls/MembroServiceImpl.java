@@ -37,18 +37,18 @@ public class MembroServiceImpl implements MembroServiceInterface{
 
     @Override
     public MembroDto salvar(MembroDto membroDto) {
-        /* if (membroRepository.existsByCpf(membroDto.getCpf())){
-           throw new Exception(); 
-        } */ 
+        if (membroRepository.existsByCpf(membroDto.getCpf())){
+           throw new RuntimeException("O cpf ja existe"); 
+        }
        Membro membroSalvo = membroRepository.save(toEntity(membroDto));
        return toDto(membroSalvo);
     }
 
     @Override
     public MembroDto editarPorId(MembroDto membroDto, UUID id) {
-        /* if (id== null){
-            throw new Expection();
-        } */
+         if (id== null){
+            throw new RuntimeException("O id esta nulo");
+        } 
        Membro membro = membroRepository.findById(id).orElseThrow(() -> new RuntimeException());
 
        membro.setCpf(membroDto.getCpf());
