@@ -83,7 +83,7 @@ erDiagram
 | Spring 3.5.7 | OpenJDK 21.0.9<br>(2025-10-21) | Apache Maven 3.9.11 | MySQL 8 / MariaDB 12.0.2 |
 
 ---
-# Como testar a API localmente
+## Como testar a API localmente
 
 ## Pré-requisitos
 
