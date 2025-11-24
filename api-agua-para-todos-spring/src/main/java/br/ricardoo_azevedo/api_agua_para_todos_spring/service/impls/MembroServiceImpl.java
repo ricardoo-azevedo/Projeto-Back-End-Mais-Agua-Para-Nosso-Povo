@@ -95,12 +95,12 @@ public class MembroServiceImpl implements MembroServiceInterface{
 
     @Override
     public void deletarPorId(UUID id) {
-        /* if (id == null) {
-            throw new IdInvalidoException("O id é nulo");
+         if (id == null) {
+            throw new RuntimeException("O id é nulo");
         }
-        if (familiaRepository.existsById(id) == false) {
-            throw new NaoEncontradaException();
-        } */
+        if (membroRepository.existsById(id) == false) {
+            throw new RuntimeException("Membro nao encontrado");
+        }
        membroRepository.deleteById(id);
     }
 
