@@ -73,7 +73,6 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
    List<Familia> familias = familiaRepository.findAll(); 
    return familias.stream()
    .map(this::toDto).collect(Collectors.toList());
-
   }
 
   @Override
@@ -93,12 +92,12 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
 
   @Override
   public void deletarPorId(UUID id) {
-   /* if (id == null) {
-            throw new IdInvalidoException("O id é nulo");
+   if (id == null) {
+            throw new RuntimeException("O id é nulo");
         }
         if (familiaRepository.existsById(id) == false) {
-            throw new EscolaNaoEncontradaException();
-        } */
+            throw new RuntimeException("Familia nao encontrada");
+        }
         familiaRepository.deleteById(id);
     }
   
