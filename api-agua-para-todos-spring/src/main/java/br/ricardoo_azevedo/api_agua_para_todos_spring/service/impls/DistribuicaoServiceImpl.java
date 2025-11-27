@@ -34,7 +34,8 @@ public class DistribuicaoServiceImpl implements DistribuicaoServiceInterface{
             distribuicao.getDataEntrega(), 
             distribuicao.getQuantidadeLitros(), 
             distribuicao.getPrevisaoProxima(), 
-            distribuicao.getObservacoes());
+            distribuicao.getObservacoes(),
+            distribuicao.getCriacaoLocalDateTime());
     }
 
     @Override

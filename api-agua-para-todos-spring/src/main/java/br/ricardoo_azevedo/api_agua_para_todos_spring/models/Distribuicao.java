@@ -1,6 +1,7 @@
 package br.ricardoo_azevedo.api_agua_para_todos_spring.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,5 +50,13 @@ public class Distribuicao {
 
     @Column(nullable = true)
     String observacoes;
+
+    @Column(nullable = false, updatable = false)
+    LocalDateTime criacaoLocalDateTime;
+    
+    @PrePersist
+    public void persistencia(){
+       this.criacaoLocalDateTime = LocalDateTime.now(); 
+    }
 
 }

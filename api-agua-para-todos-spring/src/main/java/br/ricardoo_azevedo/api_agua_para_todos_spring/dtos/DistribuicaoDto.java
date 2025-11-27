@@ -1,6 +1,7 @@
 package br.ricardoo_azevedo.api_agua_para_todos_spring.dtos;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import jakarta.validation.constraints.NotNull;
@@ -37,6 +38,8 @@ public class DistribuicaoDto {
    
     @Size(max = 500, message = "Numero maximo de caracteres")
     String observacoes;
+
+    LocalDateTime criacaoLocalDateTime;
 
 
 }
