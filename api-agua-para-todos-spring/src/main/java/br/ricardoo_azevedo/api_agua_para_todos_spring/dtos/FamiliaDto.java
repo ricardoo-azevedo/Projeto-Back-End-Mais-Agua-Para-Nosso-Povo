@@ -1,6 +1,5 @@
 package br.ricardoo_azevedo.api_agua_para_todos_spring.dtos;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,12 +18,9 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class FamiliaDto {
 
-  public FamiliaDto(String endereco, boolean possui_captacao_calhas, LocalDate data_entrega,
-      LocalDate proxima_revisao, double latitude, double longitude) {
+  public FamiliaDto(String endereco, boolean possui_captacao_calhas, double latitude, double longitude) {
     this.endereco = endereco;
     this.possui_captacao_calhas = possui_captacao_calhas;
-    this.data_entrega = data_entrega;
-    this.proxima_previsao = proxima_revisao;
     this.latitude = latitude;
     this.longitude = longitude;
   }
@@ -39,12 +35,6 @@ public class FamiliaDto {
 
   @NotNull(message = "Captacao_calhas nao deve ser nulo")
   private boolean possui_captacao_calhas;
-
-  @NotNull(message = "Data de eentrega nao deve ser nulo")
-  private LocalDate data_entrega;
-
-  @NotNull(message = "Proxima revisao nao deve ser nulo")
-  private LocalDate proxima_previsao;
 
   @NotNull(message = "Latitude nao deve ser nulo")
   private double latitude;

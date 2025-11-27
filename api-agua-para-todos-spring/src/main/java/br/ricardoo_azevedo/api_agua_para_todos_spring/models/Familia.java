@@ -1,6 +1,5 @@
 package br.ricardoo_azevedo.api_agua_para_todos_spring.models;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
@@ -30,12 +29,9 @@ public class Familia {
   @Column(columnDefinition = "BINARY(16)")
   private UUID id;
 
-  public Familia(String endereco, boolean possui_captacao_calhas, LocalDate data_entrega,
-      LocalDate proxima_revisao, double latitude, double longitude) {
+  public Familia(String endereco, boolean possui_captacao_calhas, double latitude, double longitude) {
     this.endereco = endereco;
     this.possui_captacao_calhas = possui_captacao_calhas;
-    this.data_entrega = data_entrega;
-    this.proxima_previsao = proxima_revisao;
     this.latitude = latitude;
     this.longitude = longitude;
   }
@@ -46,12 +42,6 @@ public class Familia {
 
   @Column(nullable = false)
   private boolean possui_captacao_calhas;
-
-  @Column(nullable = false)
-  private LocalDate data_entrega;
-
-  @Column(nullable = false)
-  private LocalDate proxima_previsao;
 
   @Column(nullable = false)
   private double latitude;
