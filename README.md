@@ -63,6 +63,7 @@ erDiagram
         int quantidade_litros
         date previsao_proxima
         string observacoes
+        datetime criacao_local_date_time
         uuid id_familia FK
         uuid id_cisterna FK
     }
