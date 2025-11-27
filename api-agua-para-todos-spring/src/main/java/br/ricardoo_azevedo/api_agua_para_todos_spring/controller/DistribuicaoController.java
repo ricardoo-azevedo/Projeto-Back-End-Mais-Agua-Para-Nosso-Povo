@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ricardoo_azevedo.api_agua_para_todos_spring.dtos.DistribuicaoDto;
-import br.ricardoo_azevedo.api_agua_para_todos_spring.service.impls.CisternaServiceImpl;
 import br.ricardoo_azevedo.api_agua_para_todos_spring.service.impls.DistribuicaoServiceImpl;
 import jakarta.validation.Valid;
 
@@ -24,14 +23,10 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/distribuicoes")
 public class DistribuicaoController {
 
-    private final CisternaServiceImpl cisternaServiceImpl;
 
     @Autowired
     private DistribuicaoServiceImpl distribuicaoServiceImpl;
 
-    DistribuicaoController(CisternaServiceImpl cisternaServiceImpl) {
-        this.cisternaServiceImpl = cisternaServiceImpl;
-    }
 
     @PostMapping
     public ResponseEntity<?> registrarDistribuicao (@RequestBody @Valid DistribuicaoDto distribuicaoDto, BindingResult bindingResult){
@@ -50,7 +45,7 @@ public class DistribuicaoController {
 
     @DeleteMapping("/deletar-id/{id}")
     public ResponseEntity<?> deletarDistribuicaoId(@PathVariable UUID id){
-        cisternaServiceImpl.deletarPorId(id);
+        distribuicaoServiceImpl.deletarPorId(id);
         return ResponseEntity.noContent().build();
     }
 
