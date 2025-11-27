@@ -28,7 +28,6 @@ public class FamiliaDto {
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
   private UUID id;
 
-  // em duvida se deveria ser unique ou nao
   @NotBlank(message = "O endereco nao deve ser nulo")
   @Size(min = 5)
   private String endereco;

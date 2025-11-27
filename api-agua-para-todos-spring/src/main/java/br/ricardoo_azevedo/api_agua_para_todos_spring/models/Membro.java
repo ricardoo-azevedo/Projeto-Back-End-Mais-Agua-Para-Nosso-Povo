@@ -27,7 +27,7 @@ public class Membro {
     @Id
     @GeneratedValue
     @Column(columnDefinition = "BINARY(16)")
-    UUID id;
+    private UUID id;
 
     public Membro (String cpf, String nome, int ano_nascimento, boolean acamado){
         this.cpf = cpf; 
@@ -37,15 +37,15 @@ public class Membro {
     }
 
     @Column(nullable = false)
-    String cpf;
+    private String cpf;
 
     @Column(nullable = false)
-    String nome;
+    private String nome;
 
     @Column(nullable = false)
-    int ano_nascimento;
+    private int ano_nascimento;
 
     @Column(nullable = false)
-    boolean acamado;
+    private boolean acamado;
 
 }

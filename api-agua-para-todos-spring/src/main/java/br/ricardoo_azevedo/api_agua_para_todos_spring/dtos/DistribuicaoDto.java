@@ -20,7 +20,7 @@ import lombok.ToString;
 public class DistribuicaoDto {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    UUID id;
+    private UUID id;
 
     public DistribuicaoDto(LocalDate dataEntrega, int quantidadeLitros, LocalDate previsaoProxima, String observacoes){
         this.dataEntrega = dataEntrega;
@@ -31,19 +31,18 @@ public class DistribuicaoDto {
     }
 
     @NotNull(message = "Data entrega nao deve ser nulo")
-    LocalDate dataEntrega; 
+    private LocalDate dataEntrega; 
    
     @NotNull(message = "Quantidade de litros nao deve ser nulo")
-    int quantidadeLitros;
+    private int quantidadeLitros;
 
     @NotNull(message = "Previsao proxima nao deve ser nulo")
-    LocalDate previsaoProxima;
+    private LocalDate previsaoProxima;
    
     @Size(max = 500, message = "Numero maximo de caracteres")
-    String observacoes;
+    private String observacoes;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    LocalDateTime criacaoLocalDateTime;
-
+    private LocalDateTime criacaoLocalDateTime;
 
 }

@@ -31,12 +31,12 @@ public class Cisterna {
     @Id
     @GeneratedValue
     @Column(columnDefinition = "BINARY(16)")
-    UUID id;
+    private UUID id;
 
     @Column(nullable = false)
-    int capacidade_litros;
+    private int capacidade_litros;
 
     @Column(nullable = false)
-    int nivel_atual;
+    private int nivel_atual;
 
 }

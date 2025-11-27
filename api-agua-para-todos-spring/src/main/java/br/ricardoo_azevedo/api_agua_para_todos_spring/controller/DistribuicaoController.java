@@ -48,9 +48,4 @@ public class DistribuicaoController {
         distribuicaoServiceImpl.deletarPorId(id);
         return ResponseEntity.noContent().build();
     }
-
-
-
-
-
 }

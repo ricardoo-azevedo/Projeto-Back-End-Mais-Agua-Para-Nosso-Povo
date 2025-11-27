@@ -29,7 +29,7 @@ public class Distribuicao {
     @Id
     @GeneratedValue
     @Column(columnDefinition = "BINARY(16)")
-    UUID id;
+    private UUID id;
 
     public Distribuicao(LocalDate dataEntrega, int quantidadeLitros, LocalDate previsaoProxima, String observacoes){
         this.dataEntrega = dataEntrega;
@@ -40,16 +40,16 @@ public class Distribuicao {
     }
 
     @Column(nullable = false)
-    LocalDate dataEntrega; 
+    private LocalDate dataEntrega; 
     
     @Column(nullable = false)
-    int quantidadeLitros;
+    private int quantidadeLitros;
 
     @Column(nullable = false)
-    LocalDate previsaoProxima;
+    private LocalDate previsaoProxima;
 
     @Column(nullable = true)
-    String observacoes;
+    private String observacoes;
 
     @Column(nullable = false, updatable = false)
     LocalDateTime criacaoLocalDateTime;

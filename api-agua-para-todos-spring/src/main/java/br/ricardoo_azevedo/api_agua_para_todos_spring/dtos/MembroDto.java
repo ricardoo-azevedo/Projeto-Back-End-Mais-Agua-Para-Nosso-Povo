@@ -25,21 +25,21 @@ public class MembroDto {
         this.acamado = acamado;
     }
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    UUID id;
+    private UUID id;
 
     @Size(min = 14, max = 14, message = "o cpf deve ser completo")
     @NotBlank(message = "Nao deve ser nulo")
-    String cpf;
+    private String cpf;
 
     @NotBlank(message = "O nome nao deve ser nulo")
     @Size(min =5, max = 50)
-    String nome;
+    private String nome;
 
     @NotNull(message = "Ano nascimento nao deve ser nulo")
-    int ano_nascimento;
+    private int ano_nascimento;
 
     @NotNull(message = "acamdo nao deve ser nulo")
-    boolean acamado;
+    private boolean acamado;
 
 
 }

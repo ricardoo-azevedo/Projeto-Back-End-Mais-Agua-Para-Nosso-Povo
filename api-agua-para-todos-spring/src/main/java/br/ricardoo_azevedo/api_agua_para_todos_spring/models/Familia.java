@@ -36,7 +36,6 @@ public class Familia {
     this.longitude = longitude;
   }
 
-  // em duvida se deveria ser unique ou nao
   @Column(nullable = false)
   private String endereco;
 

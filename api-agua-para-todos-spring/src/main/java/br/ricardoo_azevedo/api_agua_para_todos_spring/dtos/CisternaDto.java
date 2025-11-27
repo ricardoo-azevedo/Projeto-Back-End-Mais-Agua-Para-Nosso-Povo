@@ -22,12 +22,12 @@ public class CisternaDto {
     }
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    UUID id;
+    private UUID id;
 
     @NotNull(message = "Capacidade de litros nao deve ser nulo!")
-    int capacidade_litros;
+    private int capacidade_litros;
 
     @NotNull(message = "Nivel atual nao deve ser nulo!")
-    int nivel_atual;
+    private int nivel_atual;
     
 }
