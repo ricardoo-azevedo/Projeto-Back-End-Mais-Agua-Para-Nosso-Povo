@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ import lombok.ToString;
 @ToString @Getter @Setter
 public class DistribuicaoDto {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     UUID id;
 
     public DistribuicaoDto(LocalDate dataEntrega, int quantidadeLitros, LocalDate previsaoProxima, String observacoes){
@@ -39,6 +42,7 @@ public class DistribuicaoDto {
     @Size(max = 500, message = "Numero maximo de caracteres")
     String observacoes;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     LocalDateTime criacaoLocalDateTime;
 
 

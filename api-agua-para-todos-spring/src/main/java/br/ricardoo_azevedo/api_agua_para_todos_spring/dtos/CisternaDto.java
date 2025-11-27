@@ -2,6 +2,8 @@ package br.ricardoo_azevedo.api_agua_para_todos_spring.dtos;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +21,7 @@ public class CisternaDto {
         this.nivel_atual = nivel_atual;
     }
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     UUID id;
 
     @NotNull(message = "Capacidade de litros nao deve ser nulo!")
