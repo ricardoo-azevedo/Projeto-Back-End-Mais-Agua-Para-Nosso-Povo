@@ -37,15 +37,13 @@ erDiagram
         uuid id PK
         string endereco
         boolean possui_captacao_calhas
-        date ultima_entrega
-        date proxima_previsao
         double latitude
         double longitude
     }
 
     MEMBRO {
         uuid id PK
-        string cpf
+        string cpf "nullable"
         string nome
         int ano_nascimento
         boolean acamado
@@ -55,7 +53,7 @@ erDiagram
     CISTERNA {
         uuid id PK
         int capacidade_litros
-        int nivel_atual
+        int nivel_atual "nullable"
         uuid id_familia FK
     }
 
@@ -66,11 +64,13 @@ erDiagram
         date previsao_proxima
         string observacoes
         uuid id_familia FK
+        uuid id_cisterna FK
     }
 
     FAMILIA ||--|{ MEMBRO : "tem (1..*)"
     FAMILIA ||--|{ CISTERNA : "possui (0..*)"
     FAMILIA ||--|{ DISTRIBUICAO : "recebe (0..*)"
+    CISTERNA ||--|{ DISTRIBUICAO : "é_abastecida_em (0..*)"
 ```
 
 ---
