@@ -24,8 +24,6 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
           familia.getId(), 
           familia.getEndereco(), 
           familia.isPossui_captacao_calhas(),
-          familia.getData_entrega(), 
-          familia.getProxima_previsao(), 
           familia.getLatitude(),
           familia.getLongitude());
     }
@@ -34,8 +32,6 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
      return new Familia(
           familiaDto.getEndereco(), 
           familiaDto.isPossui_captacao_calhas(),
-          familiaDto.getData_entrega(), 
-          familiaDto.getProxima_previsao(), 
           familiaDto.getLatitude(),
           familiaDto.getLongitude());
     }
@@ -59,8 +55,6 @@ public class FamiliaServiceImpl implements FamiliaServiceInterface {
 
     familia.setEndereco(familiaDto.getEndereco());
     familia.setPossui_captacao_calhas(familiaDto.isPossui_captacao_calhas());
-    familia.setData_entrega(familiaDto.getData_entrega());
-    familia.setProxima_previsao(familiaDto.getProxima_previsao());
     familia.setLatitude(familiaDto.getLatitude());
     familia.setLongitude(familiaDto.getLongitude()); 
 
