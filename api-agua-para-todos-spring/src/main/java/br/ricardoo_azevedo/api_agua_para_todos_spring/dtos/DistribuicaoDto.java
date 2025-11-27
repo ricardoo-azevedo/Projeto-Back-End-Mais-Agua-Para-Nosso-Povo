@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotNull;
@@ -31,12 +32,15 @@ public class DistribuicaoDto {
     }
 
     @NotNull(message = "Data entrega nao deve ser nulo")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataEntrega; 
    
     @NotNull(message = "Quantidade de litros nao deve ser nulo")
     private int quantidadeLitros;
 
     @NotNull(message = "Previsao proxima nao deve ser nulo")
+    
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate previsaoProxima;
    
     @Size(max = 500, message = "Numero maximo de caracteres")
