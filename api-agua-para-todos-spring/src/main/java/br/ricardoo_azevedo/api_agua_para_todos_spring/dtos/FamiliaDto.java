@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,28 +17,22 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class FamiliaDto {
 
-  public FamiliaDto(String endereco, boolean possui_captacao_calhas, double latitude, double longitude) {
-    this.endereco = endereco;
-    this.possui_captacao_calhas = possui_captacao_calhas;
-    this.latitude = latitude;
-    this.longitude = longitude;
-  }
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private UUID id;
 
-  @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-  private UUID id;
+    @NotBlank(message = "NIS não pode ser nulo")
+    private String nis;
 
-  @NotBlank(message = "O endereco nao deve ser nulo")
-  @Size(min = 5)
-  private String endereco;
+    @NotBlank(message = "Endereço não pode ser nulo")
+    private String endereco;
 
-  @NotNull(message = "Captacao_calhas nao deve ser nulo")
-  private boolean possui_captacao_calhas;
+    @NotNull(message = "Latitude não pode ser nulo")
+    private double latitude;
 
-  @NotNull(message = "Latitude nao deve ser nulo")
-  private double latitude;
+    @NotNull(message = "Longitude não pode ser nulo")
+    private double longitude;
 
-  @NotNull(message = "Logitude nao deve ser nulo")
-  private double longitude;
-
+     @NotNull(message = "Captação calhas não pode ser nulo")
+    private boolean possui_captacao_calhas; 
 
 }

@@ -4,30 +4,25 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import br.ricardoo_azevedo.api_agua_para_todos_spring.models.Familia;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString @Getter @Setter
+@Getter @Setter @ToString
 public class CisternaDto {
 
-    public CisternaDto (int capacidade_litros, int nivel_atual) {
-        this.capacidade_litros = capacidade_litros;
-        this.nivel_atual = nivel_atual;
-    }
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID id;
 
-    @NotNull(message = "Capacidade de litros nao deve ser nulo!")
-    private int capacidade_litros;
+    @NotNull(message = "Capacidade não pode ser nula")
+    private int capacidadeLitros;
 
-    @NotNull(message = "Nivel atual nao deve ser nulo!")
-    private int nivel_atual;
-    
+    private int nivelAtual;
+
+    @NotNull(message = "id da familia não pode ser nulo")
+    private UUID id_familia;
+
 }

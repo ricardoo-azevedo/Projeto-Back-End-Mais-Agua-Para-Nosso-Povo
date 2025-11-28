@@ -14,10 +14,7 @@ public interface MembroRepository extends JpaRepository<Membro, UUID> {
 
     Optional<Membro> findByCpf(String cpf);
 
-    boolean existsByNome(String nome);
-    
-    List<Membro> findByNomeContaining(String nome);
-
     boolean existsByCpf(String cpf);
 
+    List<Membro> findByNomeContaining(String nome);
 }

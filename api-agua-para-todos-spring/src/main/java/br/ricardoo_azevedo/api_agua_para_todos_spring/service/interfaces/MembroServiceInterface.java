@@ -7,18 +7,17 @@ import br.ricardoo_azevedo.api_agua_para_todos_spring.dtos.MembroDto;
 
 public interface MembroServiceInterface {
 
-    MembroDto salvar (MembroDto membroDto);
+    MembroDto salvar(MembroDto membroDto);
 
-    MembroDto editarPorId (MembroDto membroDto, UUID id);
+    MembroDto editarPorId(MembroDto membroDto, UUID id);
 
     List<MembroDto> listar();
 
-    MembroDto pesquisarPorId (UUID id);
+    MembroDto pesquisarPorId(UUID id);
 
     MembroDto pesquisarPorCpf(String cpf);
 
     List<MembroDto> pesquisarPorNome(String nome);
 
     void deletarPorId(UUID id);
-    
 }

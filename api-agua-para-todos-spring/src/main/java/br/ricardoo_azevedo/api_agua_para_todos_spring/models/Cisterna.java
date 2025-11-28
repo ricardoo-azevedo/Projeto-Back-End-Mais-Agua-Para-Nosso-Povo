@@ -1,32 +1,20 @@
 package br.ricardoo_azevedo.api_agua_para_todos_spring.models;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Component
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter @ToString
-@Table(name ="TB_Cisterna")
+@Table(name = "TB_Cisterna")
 public class Cisterna {
-
-    public Cisterna(int capacidade_litros, int nivel_atual) {
-        this.capacidade_litros = capacidade_litros;
-        this.nivel_atual = nivel_atual;
-    }
 
     @Id
     @GeneratedValue
@@ -34,9 +22,22 @@ public class Cisterna {
     private UUID id;
 
     @Column(nullable = false)
-    private int capacidade_litros;
+    private int capacidadeLitros;
 
-    @Column(nullable = false)
-    private int nivel_atual;
+    @Column(nullable = true)
+    private int nivelAtual;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_familia", nullable = false)
+    private Familia familia;
+    
+    @OneToMany(mappedBy = "cisterna", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Distribuicao> distribuicoes = new HashSet<>();
+
+    public Cisterna(int capacidadeLitros, int nivelAtual, Familia familia) {
+        this.capacidadeLitros = capacidadeLitros;
+        this.nivelAtual = nivelAtual;
+        this.familia = familia;
+    }
 
 }

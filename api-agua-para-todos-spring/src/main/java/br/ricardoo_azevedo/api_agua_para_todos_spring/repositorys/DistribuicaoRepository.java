@@ -9,5 +9,4 @@ import br.ricardoo_azevedo.api_agua_para_todos_spring.models.Distribuicao;
 
 @Repository
 public interface DistribuicaoRepository extends JpaRepository<Distribuicao, UUID>{
-
 }

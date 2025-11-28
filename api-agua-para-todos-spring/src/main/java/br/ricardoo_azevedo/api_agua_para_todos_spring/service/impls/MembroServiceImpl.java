@@ -8,100 +8,108 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.ricardoo_azevedo.api_agua_para_todos_spring.dtos.MembroDto;
+import br.ricardoo_azevedo.api_agua_para_todos_spring.models.Familia;
 import br.ricardoo_azevedo.api_agua_para_todos_spring.models.Membro;
+import br.ricardoo_azevedo.api_agua_para_todos_spring.repositorys.FamiliaRepository;
 import br.ricardoo_azevedo.api_agua_para_todos_spring.repositorys.MembroRepository;
 import br.ricardoo_azevedo.api_agua_para_todos_spring.service.interfaces.MembroServiceInterface;
 
 @Service
-public class MembroServiceImpl implements MembroServiceInterface{
+public class MembroServiceImpl implements MembroServiceInterface {
 
     @Autowired
-    MembroRepository membroRepository; 
+    MembroRepository membroRepository;
 
-    public MembroDto toDto (Membro membro) {
-       return new MembroDto(
-        membro.getId(),
-        membro.getCpf(),
-        membro.getNome(),
-        membro.getAno_nascimento(),
-        membro.isAcamado()); 
+    @Autowired
+    FamiliaRepository familiaRepository;
+
+    private MembroDto toDto(Membro m) {
+        return new MembroDto(
+            m.getId(),
+            m.getCpf(),
+            m.getNome(),
+            m.getAno_nascimento(),
+            m.isAcamado(),
+            m.getFamilia().getId()
+        );
     }
 
-    public Membro toEntity (MembroDto membroDto){
-       return new Membro(
-        membroDto.getCpf(),
-        membroDto.getNome(),
-        membroDto.getAno_nascimento(),
-        membroDto.isAcamado()); 
+    private Membro toEntity(MembroDto dto) {
+        Familia familia = familiaRepository.findById(dto.getId_familia())
+                .orElseThrow(() -> new RuntimeException("Família não encontrada"));
+
+        return new Membro(
+            dto.getCpf(),
+            dto.getNome(),
+            dto.getAno_nascimento(),
+            dto.getAcamado(),
+            familia
+        );
     }
 
     @Override
-    public MembroDto salvar(MembroDto membroDto) {
-        if (membroRepository.existsByCpf(membroDto.getCpf())){
-           throw new RuntimeException("O cpf ja existe"); 
-        }
-       Membro membroSalvo = membroRepository.save(toEntity(membroDto));
-       return toDto(membroSalvo);
+    public MembroDto salvar(MembroDto dto) {
+        if (membroRepository.existsByCpf(dto.getCpf()))
+            throw new RuntimeException("CPF já existe");
+
+        Membro salvo = membroRepository.save(toEntity(dto));
+        return toDto(salvo);
     }
 
     @Override
-    public MembroDto editarPorId(MembroDto membroDto, UUID id) {
-         if (id== null){
-            throw new RuntimeException("O id esta nulo");
-        } 
-       Membro membro = membroRepository.findById(id).orElseThrow(() -> new RuntimeException());
+    public MembroDto editarPorId(MembroDto dto, UUID id) {
+        Membro membro = membroRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Membro não encontrado"));
 
-       membro.setCpf(membroDto.getCpf());
-       membro.setNome(membroDto.getNome());
-       membro.setAno_nascimento(membroDto.getAno_nascimento());
-       membro.setAcamado(membroDto.isAcamado());
+        Familia familia = familiaRepository.findById(dto.getId_familia())
+                .orElseThrow(() -> new RuntimeException("Família não encontrada"));
 
-       Membro membroEditado = membroRepository.save(membro);
+        membro.setCpf(dto.getCpf());
+        membro.setNome(dto.getNome());
+        membro.setAno_nascimento(dto.getAno_nascimento());
+        membro.setAcamado(dto.getAcamado());
+        membro.setFamilia(familia);
 
-       return toDto(membroEditado);
+        return toDto(membroRepository.save(membro));
     }
 
     @Override
     public List<MembroDto> listar() {
-        List<Membro> membros = membroRepository.findAll();
-        return membros.stream()
-        .map(this::toDto).collect(Collectors.toList());
+        return membroRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
     }
 
     @Override
     public MembroDto pesquisarPorId(UUID id) {
-        /* if (id == null){
-            throw new Exception();
-        } */
         return membroRepository.findById(id)
-        .map(this::toDto).orElseThrow(() -> new RuntimeException());
-
+                .map(this::toDto)
+                .orElseThrow(() -> new RuntimeException("Membro não encontrado"));
     }
 
     @Override
     public MembroDto pesquisarPorCpf(String cpf) {
-       /* if(cpf == null) {
-        throw new Exception(); 
-       } */
-        return membroRepository.findByCpf(cpf).map(this::toDto).orElseThrow(() -> new RuntimeException());
-
+        return membroRepository.findByCpf(cpf)
+                .map(this::toDto)
+                .orElseThrow(() -> new RuntimeException("Membro não encontrado"));
     }
 
     @Override
     public List<MembroDto> pesquisarPorNome(String nome) {
-        List<Membro> membros = membroRepository.findByNomeContaining(nome);
-        return membros.stream().map(this::toDto).collect(Collectors.toList());
+        return membroRepository.findByNomeContaining(nome)
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public void deletarPorId(UUID id) {
-         if (id == null) {
-            throw new RuntimeException("O id é nulo");
-        }
-        if (membroRepository.existsById(id) == false) {
-            throw new RuntimeException("Membro nao encontrado");
-        }
-       membroRepository.deleteById(id);
-    }
+         Membro membro = membroRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Membro não encontrado"));
+        Familia familia = membro.getFamilia();
 
+        if (familia != null) {
+        familia.getMembros().remove(membro);
+        familiaRepository.save(familia); // aciona o orphanRemoval
+        }
+        membroRepository.delete(membro);
+    }
 }

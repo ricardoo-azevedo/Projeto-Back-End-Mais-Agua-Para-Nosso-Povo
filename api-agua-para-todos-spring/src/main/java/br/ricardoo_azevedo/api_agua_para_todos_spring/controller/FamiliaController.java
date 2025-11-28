@@ -55,10 +55,10 @@ public class FamiliaController{
         return ResponseEntity.ok().body(familiaDto);
     }
 
-    @GetMapping("/pesquisar-endereco/{endereco}")
-    public ResponseEntity<List<?>> buscarFamiliaEndereco (@PathVariable String endereco) {
-        List<FamiliaDto> familiaDtos = familiaServiceImpl.pesquisarPorEndereco(endereco);
-        return ResponseEntity.ok(familiaDtos);
+    @GetMapping("/pesquisar-nis/{nis}")
+    public ResponseEntity<?> buscarFamiliasId(@PathVariable String nis) {
+        FamiliaDto familiaDto = familiaServiceImpl.pesquisarPorNis(nis);
+        return ResponseEntity.ok().body(familiaDto);
     }
 
     @DeleteMapping("/deletar-id/{id}")

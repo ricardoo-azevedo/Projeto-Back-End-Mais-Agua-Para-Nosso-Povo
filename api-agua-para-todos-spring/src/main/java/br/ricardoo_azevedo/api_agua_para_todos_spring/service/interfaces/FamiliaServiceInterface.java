@@ -7,16 +7,15 @@ import br.ricardoo_azevedo.api_agua_para_todos_spring.dtos.FamiliaDto;
 
 public interface FamiliaServiceInterface {
 
-  FamiliaDto salvar (FamiliaDto familiaDto);
+    FamiliaDto salvar(FamiliaDto familiaDto);
 
-  FamiliaDto editarPorId (FamiliaDto familiaDto, UUID id);
+    FamiliaDto editarPorId(FamiliaDto familiaDto, UUID id);
 
-  List<FamiliaDto> listar();
+    List<FamiliaDto> listar();
 
-  FamiliaDto pesquisarPorId (UUID id);
+    FamiliaDto pesquisarPorId(UUID id);
 
-  List<FamiliaDto> pesquisarPorEndereco(String endereco);
+    FamiliaDto pesquisarPorNis(String nis);
 
-  void deletarPorId(UUID id);
-
+    void deletarPorId(UUID id);
 }

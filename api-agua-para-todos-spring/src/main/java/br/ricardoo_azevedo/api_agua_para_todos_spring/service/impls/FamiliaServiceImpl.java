@@ -15,86 +15,67 @@ import br.ricardoo_azevedo.api_agua_para_todos_spring.service.interfaces.Familia
 @Service
 public class FamiliaServiceImpl implements FamiliaServiceInterface {
 
+    @Autowired
+    FamiliaRepository familiaRepository;
 
-  @Autowired
-  FamiliaRepository familiaRepository;
-
-    public FamiliaDto toDto (Familia familia){
-        return new FamiliaDto(
-          familia.getId(), 
-          familia.getEndereco(), 
-          familia.isPossui_captacao_calhas(),
-          familia.getLatitude(),
-          familia.getLongitude());
+    public FamiliaDto toDto(Familia f) {
+        return new FamiliaDto(f.getId(), f.getNis(), f.getEndereco(), f.getLatitude(), f.getLongitude(), f.isPossui_captacao_calhas());
     }
 
-    public Familia toEntity(FamiliaDto familiaDto){
-     return new Familia(
-          familiaDto.getEndereco(), 
-          familiaDto.isPossui_captacao_calhas(),
-          familiaDto.getLatitude(),
-          familiaDto.getLongitude());
+    public Familia toEntity(FamiliaDto dto) {
+        return new Familia(
+         dto.getNis(),
+         dto.getEndereco(), 
+         dto.getLatitude(), 
+         dto.getLongitude(), 
+         dto.isPossui_captacao_calhas());
     }
 
+    @Override
+    public FamiliaDto salvar(FamiliaDto dto) {
+        if (familiaRepository.existsByNis(dto.getNis()))
+            throw new RuntimeException("NIS já existe");
 
-  @Override
-  public FamiliaDto salvar(FamiliaDto familiaDto) {
-    // if (familiaRepository.existsById(familiaDto.getId() {
-    // throw new Exception();
-    // }
-    Familia familiaSalva = familiaRepository.save(toEntity(familiaDto));
-    return toDto(familiaSalva);
-  }
+        Familia salva = familiaRepository.save(toEntity(dto));
+        return toDto(salva);
+    }
 
-  @Override
-  public FamiliaDto editarPorId(FamiliaDto familiaDto, UUID id) {
-    // if(id == null){
-    //   throw new expcetion;
-    // }
-    Familia familia = familiaRepository.findById(id).orElseThrow(() -> new RuntimeException());
+    @Override
+    public FamiliaDto editarPorId(FamiliaDto dto, UUID id) {
+        Familia familia = familiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Família não encontrada"));
 
-    familia.setEndereco(familiaDto.getEndereco());
-    familia.setPossui_captacao_calhas(familiaDto.isPossui_captacao_calhas());
-    familia.setLatitude(familiaDto.getLatitude());
-    familia.setLongitude(familiaDto.getLongitude()); 
+        familia.setNis(dto.getNis());
+        familia.setEndereco(dto.getEndereco());
+        familia.setLatitude(dto.getLatitude());
+        familia.setLongitude(dto.getLongitude());
+        familia.setPossui_captacao_calhas(dto.isPossui_captacao_calhas());
 
-    Familia familiaEditada = familiaRepository.save(familia);
-    return toDto(familiaEditada);
-  }
+        return toDto(familiaRepository.save(familia));
+    }
 
-  @Override
-  public List<FamiliaDto> listar() {
-   List<Familia> familias = familiaRepository.findAll(); 
-   return familias.stream()
-   .map(this::toDto).collect(Collectors.toList());
-  }
+    @Override
+    public List<FamiliaDto> listar() {
+        return familiaRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
+    }
 
-  @Override
-  public FamiliaDto pesquisarPorId(UUID id) {
-    // if(id == null){
-    //   throw new expcetion;
-    // }
-    return familiaRepository.findById(id)
-    .map(this::toDto).orElseThrow(() -> new RuntimeException("Achou nao"));
-  }
+    @Override
+    public FamiliaDto pesquisarPorId(UUID id) {
+        return familiaRepository.findById(id).map(this::toDto)
+                .orElseThrow(() -> new RuntimeException("Família não encontrada"));
+    }
 
-  @Override
-  public List<FamiliaDto> pesquisarPorEndereco(String endereco) {
-    List<Familia> resultados = familiaRepository.findByEnderecoContaining(endereco);
-    return resultados.stream().map(this::toDto).collect(Collectors.toList());
-  }
+    @Override
+    public FamiliaDto pesquisarPorNis(String nis) {
+        return familiaRepository.findByNis(nis).map(this::toDto)
+                .orElseThrow(() -> new RuntimeException("Família não encontrada"));
+    }
 
-  @Override
-  public void deletarPorId(UUID id) {
-   if (id == null) {
-            throw new RuntimeException("O id é nulo");
-        }
-        if (familiaRepository.existsById(id) == false) {
-            throw new RuntimeException("Familia nao encontrada");
-        }
+    @Override
+    public void deletarPorId(UUID id) {
+        if (!familiaRepository.existsById(id))
+            throw new RuntimeException("Família não encontrada");
+
         familiaRepository.deleteById(id);
     }
-  
-  }
-
-
+}

@@ -18,28 +18,23 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class MembroDto {
 
-    public MembroDto (String cpf, String nome, int ano_nascimento, boolean acamado){
-        this.cpf = cpf; 
-        this.nome = nome;
-        this.ano_nascimento = ano_nascimento;
-        this.acamado = acamado;
-    }
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID id;
 
-    @Size(min = 14, max = 14, message = "o cpf deve ser completo")
-    @NotBlank(message = "Nao deve ser nulo")
+    @Size(min = 14, max = 14, message = "CPF deve ter 14 caracteres")
+    @NotBlank(message = "CPF obrigatorio")
     private String cpf;
 
-    @NotBlank(message = "O nome nao deve ser nulo")
-    @Size(min =5, max = 50)
+    @NotBlank(message = "Nome obrigatório")
+    @Size(min = 5, max = 50)
     private String nome;
 
-    @NotNull(message = "Ano nascimento nao deve ser nulo")
-    private int ano_nascimento;
+    @NotNull(message = "Ano nascimento obrigatório")
+    private Integer ano_nascimento;
 
-    @NotNull(message = "acamdo nao deve ser nulo")
-    private boolean acamado;
+    @NotNull(message = "Status acamado obrigatório")
+    private Boolean acamado;
 
-
+    @NotNull(message = "Família obrigatória")
+    private UUID id_familia;
 }

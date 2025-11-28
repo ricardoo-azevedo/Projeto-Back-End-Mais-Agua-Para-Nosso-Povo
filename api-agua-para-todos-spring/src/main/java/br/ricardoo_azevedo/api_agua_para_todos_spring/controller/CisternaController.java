@@ -28,7 +28,7 @@ public class CisternaController {
     private CisternaServiceImpl cisternaServiceImpl;
 
     @PostMapping
-    public ResponseEntity<?> registrarCisterna(@RequestBody @Valid CisternaDto cisternaDto, BindingResult bindingResult){
+    public ResponseEntity<?> registrarCisterna(@org.springframework.web.bind.annotation.RequestBody @Valid CisternaDto cisternaDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
@@ -38,11 +38,11 @@ public class CisternaController {
     }
     
     @PutMapping("/editar-id/{id}")
-    public ResponseEntity<?> editarCisterna (@RequestBody @Valid CisternaDto cisternaDto, BindingResult bindingResult, @PathVariable UUID id) {
+    public ResponseEntity<?> editarCisterna (@org.springframework.web.bind.annotation.RequestBody @Valid CisternaDto cisternaDto, BindingResult bindingResult, @PathVariable UUID id) {
        if (bindingResult.hasErrors()) {
         return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
        }
-       CisternaDto cisternaEditada = cisternaServiceImpl.editarPorId(cisternaDto, id);
+       CisternaDto cisternaEditada = cisternaServiceImpl.atualizar(id, cisternaDto);
        return ResponseEntity.status(HttpStatus.OK).body(cisternaEditada);
      }
 
@@ -55,7 +55,7 @@ public class CisternaController {
 
     @GetMapping("/pesquisar-id/{id}")
      public ResponseEntity<?> buscarCisternaId(@PathVariable UUID id){
-        CisternaDto resultado = cisternaServiceImpl.pesquisarPorId(id);
+        CisternaDto resultado = cisternaServiceImpl.buscarPorId(id);
         return ResponseEntity.ok().body(resultado);
     }
      

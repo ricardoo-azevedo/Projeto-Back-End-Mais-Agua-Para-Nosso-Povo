@@ -23,14 +23,6 @@ public class DistribuicaoDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID id;
 
-    public DistribuicaoDto(LocalDate dataEntrega, int quantidadeLitros, LocalDate previsaoProxima, String observacoes){
-        this.dataEntrega = dataEntrega;
-        this.quantidadeLitros = quantidadeLitros;
-        this.previsaoProxima = previsaoProxima;
-        this.observacoes = observacoes;
-
-    }
-
     @NotNull(message = "Data entrega nao deve ser nulo")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataEntrega; 
@@ -39,14 +31,25 @@ public class DistribuicaoDto {
     private int quantidadeLitros;
 
     @NotNull(message = "Previsao proxima nao deve ser nulo")
-    
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate previsaoProxima;
    
     @Size(max = 500, message = "Numero maximo de caracteres")
     private String observacoes;
 
+    @NotNull(message = "id da familia nao pode ser nulo")
+    private UUID idFamilia;
+
+    @NotNull(message = "id da cisterna nao pode ser nulo")
+    private UUID idCisterna;
+
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime criacaoLocalDateTime;
 
+    public DistribuicaoDto(LocalDate dataEntrega, int quantidadeLitros, LocalDate previsaoProxima, String observacoes){
+        this.dataEntrega = dataEntrega;
+        this.quantidadeLitros = quantidadeLitros;
+        this.previsaoProxima = previsaoProxima;
+        this.observacoes = observacoes;
+    }
 }
