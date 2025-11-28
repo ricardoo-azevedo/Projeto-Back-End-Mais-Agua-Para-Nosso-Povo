@@ -35,6 +35,7 @@ os envios de água e a previsão de novas remessas, em resumo.
 erDiagram
     FAMILIA {
         uuid id PK
+        string nis
         string endereco
         boolean possui_captacao_calhas
         double latitude
