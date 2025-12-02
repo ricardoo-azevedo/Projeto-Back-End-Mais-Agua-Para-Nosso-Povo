@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import br.ricardoo_azevedo.api_agua_para_todos_spring.models.Familia;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 

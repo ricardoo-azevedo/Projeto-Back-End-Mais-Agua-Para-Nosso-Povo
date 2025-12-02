@@ -26,11 +26,13 @@ public class DistribuicaoDto {
     @NotNull(message = "Data entrega nao deve ser nulo")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataEntrega; 
-   
-    @NotNull(message = "Quantidade de litros nao deve ser nulo")
+  
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    // @NotNull(message = "Quantidade de litros nao deve ser nulo")
     private int quantidadeLitros;
 
-    @NotNull(message = "Previsao proxima nao deve ser nulo")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    // @NotNull(message = "Previsao proxima nao deve ser nulo")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate previsaoProxima;
    

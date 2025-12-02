@@ -1,5 +1,6 @@
 package br.ricardoo_azevedo.api_agua_para_todos_spring.service.impls;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -59,11 +60,49 @@ public class DistribuicaoServiceImpl implements DistribuicaoServiceInterface{
         );
     }
 
-    @Override
-    public DistribuicaoDto salvar(DistribuicaoDto distribuicaoDto) {
-        Distribuicao distribuicaoSalva = distribuicaoRepository.save(toEntity(distribuicaoDto));
-        return toDto(distribuicaoSalva);
+   
+   
+
+
+@Override
+public DistribuicaoDto salvar(DistribuicaoDto dto) {
+
+    Familia familia = familiaRepository.findById(dto.getIdFamilia())
+        .orElseThrow(() -> new RuntimeException("Família não encontrada."));
+
+    Cisterna cisterna = cisternaRepository.findById(dto.getIdCisterna())
+        .orElseThrow(() -> new RuntimeException("Cisterna não encontrada."));
+
+    int moradores = familia.getMembros().size();
+    if (moradores == 0) {
+        throw new RuntimeException("A família não possui membros cadastrados.");
     }
+
+    int consumoPorPessoaPorDia = 30; 
+    int consumoDiarioFamilia = moradores * consumoPorPessoaPorDia;
+
+    int litrosDistribuidos = cisterna.getCapacidadeLitros() - cisterna.getNivelAtual();
+    if (litrosDistribuidos < 0) litrosDistribuidos = 0;
+
+    dto.setQuantidadeLitros(litrosDistribuidos);
+
+    int diasDuracao = litrosDistribuidos / consumoDiarioFamilia;
+    if (litrosDistribuidos % consumoDiarioFamilia != 0) {
+        diasDuracao += 1; 
+    }
+    LocalDate previsao = dto.getDataEntrega().plusDays(diasDuracao);
+    dto.setPrevisaoProxima(previsao);
+
+    cisterna.setNivelAtual(cisterna.getNivelAtual() + litrosDistribuidos);
+    if (cisterna.getNivelAtual() > cisterna.getCapacidadeLitros()) {
+        cisterna.setNivelAtual(cisterna.getCapacidadeLitros());
+    }
+    cisternaRepository.save(cisterna);
+
+    Distribuicao distribuicaoSalva = distribuicaoRepository.save(toEntity(dto));
+
+    return toDto(distribuicaoSalva);
+}
 
     @Override
     public List<DistribuicaoDto> listar() {
@@ -72,15 +111,14 @@ public class DistribuicaoServiceImpl implements DistribuicaoServiceInterface{
             .collect(Collectors.toList());
     }
 
-    @Override
-    public void deletarPorId(UUID id) {
-        if (id == null){
-            throw new RuntimeException("O id é nulo");
-        }
-        if (!distribuicaoRepository.existsById(id)){
-            throw new RuntimeException("Distribuição nao encontrada");
-        }
-        distribuicaoRepository.deleteById(id);
-    }
+@Override
+public void deletarPorId(UUID id) {
+    Distribuicao distribuicao = distribuicaoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Distribuição não encontrada"));
 
+    Cisterna cisterna = distribuicao.getCisterna();
+    cisterna.getDistribuicoes().remove(distribuicao);
+
+    cisternaRepository.save(cisterna);
 }
+   }

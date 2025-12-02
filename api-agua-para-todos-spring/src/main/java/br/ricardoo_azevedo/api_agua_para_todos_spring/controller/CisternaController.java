@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.ricardoo_azevedo.api_agua_para_todos_spring.dtos.CisternaDto;
 import br.ricardoo_azevedo.api_agua_para_todos_spring.service.impls.CisternaServiceImpl;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
 @RestController
